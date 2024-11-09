@@ -1,55 +1,51 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+Projet Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet utilise Vite, un bundler rapide pour le développement web moderne.
 
-Currently, two official plugins are available:
+Prérequis
+Node.js (version 14 ou supérieure)
+Installation
+Clonez le repository :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+bash
+Copier le code
+git clone https://github.com/sarahvar/Rabbit
+Allez dans le dossier du projet :
 
-## Expanding the ESLint configuration
+bash
+Copier le code
+cd nom-du-projet
+Installez les dépendances :
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+bash
+Copier le code
+npm install
+Démarrer le projet
+Pour lancer l'application en mode développement :
 
-- Configure the top-level `parserOptions` property like this:
+bash
+Copier le code
+npm run dev
+Accédez ensuite à http://localhost:5173 dans votre navigateur.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Construction pour la production
+Pour créer une version optimisée du projet :
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+bash
+Copier le code
+npm run build
+Lancer en mode production
+Après avoir construit l'application, vous pouvez la tester en local :
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-=======
+bash
+Copier le code
+npm run preview
+Scripts disponibles
+npm run dev : Lance le serveur de développement.
+npm run build : Crée une version optimisée pour la production.
+npm run preview : Teste la version de production localement.
+Licence
+Distribué sous la licence MIT.
 4) Résolution de problème
 
 Ecrire 4 classes : 
