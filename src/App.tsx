@@ -16,10 +16,12 @@ class Hunter {
 
   hunt(forest: Forest) {
     console.log("Hunter is hunting...");
-    const distance = Math.floor(Math.random() * 3) + 1; // Random distance (1-3)
-    this.distanceTravelled += distance;
-    this.position[0] += distance; // Hunter moves along the X-axis
+    const moveX = Math.floor(Math.random() * 3) + 1; // Random distance for X-axis (1-3)
+    const moveY = Math.floor(Math.random() * 3) + 1; // Random distance for Y-axis (1-3)
+    this.position[0] += moveX;
+    this.position[1] += moveY; // Hunter moves on both axes
 
+    this.distanceTravelled += moveX + moveY; // Calculate total distance travelled
     console.log(`Hunter moved to position: [${this.position[0]}, ${this.position[1]}]`);
 
     forest.rabbits.forEach(rabbit => {
@@ -44,7 +46,8 @@ class Hunter {
   }
 
   isRabbitNearby(rabbit: Rabbit) {
-    return Math.abs(this.position[0] - rabbit.position[0]) <= 2; // Rabbit is within a distance of 2 from the hunter
+    // Check if the rabbit is within 2 distance units on both axes
+    return Math.abs(this.position[0] - rabbit.position[0]) <= 2 && Math.abs(this.position[1] - rabbit.position[1]) <= 2;
   }
 }
 
@@ -60,21 +63,24 @@ class Rabbit {
     this.speed = Math.floor(Math.random() * 5) + 6; // Random speed between 6 and 10
     this.color = color;
     this.distanceTravelled = 0;
-    this.position = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)]; // Random position
+    this.position = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)]; // Random position on both axes
     this.burrow = null; // Initially no burrow
   }
 
   escape() {
-    const escapeDistance = this.speed + Math.floor(Math.random() * 3) + 1; // Escape distance based on speed
-    this.distanceTravelled += escapeDistance;
-    this.position[0] += escapeDistance; // Rabbit moves away
+    const escapeDistanceX = this.speed + Math.floor(Math.random() * 3) + 1; // Escape distance for X-axis
+    const escapeDistanceY = this.speed + Math.floor(Math.random() * 3) + 1; // Escape distance for Y-axis
+    this.distanceTravelled += escapeDistanceX + escapeDistanceY;
+    this.position[0] += escapeDistanceX;
+    this.position[1] += escapeDistanceY; // Rabbit moves on both axes
+
     console.log(`${this.color.charAt(0).toUpperCase() + this.color.slice(1)} rabbit escaped to position: [${this.position[0]}, ${this.position[1]}]`);
   }
 
   findBurrow(forest: Forest) {
     if (!this.burrow) {
       for (let burrow of forest.burrows) {
-        if (!burrow.occupied && Math.abs(this.position[0] - burrow.position[0]) <= 2) {
+        if (!burrow.occupied && Math.abs(this.position[0] - burrow.position[0]) <= 2 && Math.abs(this.position[1] - burrow.position[1]) <= 2) {
           burrow.occupy();
           this.burrow = burrow;
           console.log(`${this.color.charAt(0).toUpperCase() + this.color.slice(1)} rabbit found a burrow at position: [${burrow.position[0]}, ${burrow.position[1]}]`);
